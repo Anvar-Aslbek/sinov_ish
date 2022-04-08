@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,23 +7,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+      .inputbox1{
+        padding: 10px;
+        margin: 20px;
+      }
+    </style>
     <title>Document</title>
 </head>
 <body>
     <div class="center">
         <h1>Our Newsletter</h1>
-        <form>
-          <div class="inputbox">
-            <input type="text" required="required">
-            <span>Email</span>
-          </div>
-          <div class="inputbox">
-            <input type="text" required="required">
-            <span>Password</span>
-          </div>
-          <div class="inputbox">
-            <input type="submit" value="submit">
-          </div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="inputbox1">
+                <label for="username">Username</label>
+                {% render_field form.username type="text" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:170px;" name="username" required="required" %}
+            </div>
+            <div class="inputbox1">
+                <label for="email">email</label>
+                {% render_field form.email type="text" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:170px;" name="email" required="required" %}
+            </div>
+            <div class="inputbox1">
+                <label for="fakultet">Fakultet : </label>
+                {% render_field form.fakultet type="text" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:193px;" name="fakultet" required="required" %}
+            </div>
+            <div class="inputbox1">
+                <label for="Kurs">Kurs : </label>
+                {% render_field form.kurs type="text" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:193px;" name="Kurs" required="required" %}
+            </div>
+            <div class="inputbox1">
+                <label for="password">Parol</label>
+                {% render_field form.password1 type="password" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:170px;" name="password" required="required" %}
+            </div>
+            <div class="inputbox1">
+              <label for="password1">Parol(Takroran)</label>
+              {% render_field form.password2 type="password" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:170px;" name="password1" required="required" %}
+            </div>
+            <div align='CENTER'>
+                <a href="{% url 'login' %}" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;">Ortga qaytish</a>
+                <input type="submit" style="padding: 12px;text-decoration: none;border: 1px solid;border-radius: 12px;margin-left: 20px;" value="Kirish">
+            </div>
         </form>
       </div>
 </body>

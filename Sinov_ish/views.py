@@ -4,10 +4,8 @@ from .forms import BahoForm
 from .models import Talaba, Fan, Baho
 
 def home(request):
-    user1 = Talaba.objects.get(username="Yusufbek") #request.user ga almashtiramiz
+    user1 = Talaba.objects.get(username=request.user)
     fanlar = Fan.objects.filter(fakultet=user1.fakultet)
-    print(user1.fakultet.name)
-    print("Salom")
     if request.method == 'POST':
         print("Salom11")
         a = request.POST.items()

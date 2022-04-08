@@ -1,7 +1,8 @@
 from unicodedata import name
 from django.urls import path
-from .views import register
+from .views import user_login, signup
 
 urlpatterns = [
-    path('', register, name="register")
+    path('', user_login, name="login"),
+    path('signup/',signup,name='signup')
 ]
