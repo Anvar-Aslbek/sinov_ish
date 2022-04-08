@@ -1,3 +1,4 @@
+{% load static %}
 {% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
@@ -5,21 +6,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
     <title>Document</title>
 </head>
 <body>
-    <form method="post">
-        {% csrf_token %}
-        {% for fan in fanlar %}
-            <input value="{{fan.name}}">
-            <select name="{{fan.id}}" id="fan{{fan.id}}">
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            {% comment %}{% render_field form.baho id="fan{{fan.id}}" name="{{fan.id}}" %}{% endcomment %} <br><br>
-        {% endfor %}
-        <button>submit</button>
-    </form>
+    <div class="center">
+        <h1>Baholaringizni kiriting</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for fan in fanlar %}
+            <div class="yon">
+                <div class="inputbox">
+                    <input value="{{fan.name}}" readonly>
+                </div>
+                <div class="inputbox">
+                <select style="height: 45px; border: 2px solid #000;outline: none;
+                background: none; border-radius: 10px; margin-left: 25px;" name="{{fan.id}}" id="fan{{fan.id}}">
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                </div>
+            </div>
+            {% endfor %}
+          <div class="inputbox">
+            <input type="submit" value="submit">
+          </div>
+        </form>
+      </div>
+
 </body>
 </html>

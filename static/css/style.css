@@ -6,9 +6,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
   background: linear-gradient(45deg, greenyellow, dodgerblue);
   font-family: "Sansita Swashed", cursive;
+}
+.yon{
+  display: flex;
+  /* justify-content: center; */
 }
 .center {
   position: relative;
@@ -60,12 +64,12 @@ body {
   transform: translateX(-13px) translateY(-35px);
   font-size: 1em;
 }
-.center .inputbox [type="button"] {
+.center .inputbox [type="submit"] {
   width: 50%;
   background: dodgerblue;
   color: #fff;
   border: #fff;
 }
-.center .inputbox:hover [type="button"] {
+.center .inputbox:hover [type="submit"] {
   background: linear-gradient(45deg, greenyellow, dodgerblue);
 }
