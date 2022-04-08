@@ -12,7 +12,12 @@
         {% csrf_token %}
         {% for fan in fanlar %}
             <input value="{{fan.name}}">
-            {% render_field form.baho name="{{fan.name}}" %} <br><br>
+            <select name="{{fan.id}}" id="fan{{fan.id}}">
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            {% comment %}{% render_field form.baho id="fan{{fan.id}}" name="{{fan.id}}" %}{% endcomment %} <br><br>
         {% endfor %}
         <button>submit</button>
     </form>

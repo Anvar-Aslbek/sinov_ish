@@ -1,8 +1,7 @@
 from django.shortcuts import redirect, render
 
-from Sinov_ish.models import baho
 from .forms import BahoForm
-from .models import Talaba, Fan
+from .models import Talaba, Fan, Baho
 
 def home(request):
     user1 = Talaba.objects.get(username="Yusufbek") #request.user ga almashtiramiz
@@ -11,13 +10,26 @@ def home(request):
     print("Salom")
     if request.method == 'POST':
         print("Salom11")
-        form = BahoForm(request.POST)
-        if form.is_valid():
-            print("Salom1")
-            f = form.save(commit=False)
-            f.user = user1
-            f.save()
-            return redirect('home')
+        a = request.POST.items()
+        d = 0
+        for keys,values in a:
+            if d==0:
+                d=1
+                continue
+            fan1 = Fan.objects.get(id=keys)
+            k = Baho.objects.filter(user=user1,fan=fan1).exists()
+            if k:
+                lk = Baho.objects.get(user=user1,fan=fan1)
+                lk.baho = values
+                lk.save()
+            else:
+                f = Baho()
+                f.user = user1
+                f.fan = fan1
+                f.baho = values
+                f.save()
+            print("Ciqdi",keys, values, type(keys), type(values))
+        return redirect('register')
     else:
         form = BahoForm()
     return render(request,'index.html', {'form':form, 'fanlar':fanlar})
