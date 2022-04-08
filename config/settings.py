@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Sinov_ish',
     'User',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
