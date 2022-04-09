@@ -33,3 +33,6 @@ def home(request):
     else:
         form = BahoForm()
     return render(request,'index.html', {'form':form, 'fanlar':fanlar})
+
+def jadval(request):
+    return render(request,"jadval.html")
