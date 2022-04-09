@@ -41,6 +41,8 @@ def jadval(request):
         'jadval':users
     }
     return render(request,"jadval.html", content)
+
+
 def search(request):
     results = None
     user = request.user  
@@ -61,3 +63,4 @@ def search(request):
             'jadval.html',
             {'jadval': results,'fanlar':fanlar}
         )
+        
