@@ -41,3 +41,21 @@ def jadval(request):
         'users':users
     }
     return render(request,"jadval.html", content)
+def search(request):
+    results = None
+    try:
+        query = request.POST['query']
+        results = Talaba.objects.filter(name__icontains=query)
+
+        return render(
+            request,
+            'jadval.html',
+            {'jadval': results}
+        )
+    except KeyError:
+        "KeyError"
+        return render(
+            request,
+            'jadval.html',
+            {'jadval': results}
+        )
