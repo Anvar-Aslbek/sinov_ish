@@ -49,14 +49,23 @@
         <div class="tbl-content">
           <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
-              {% for user in jadval %}
+             {% comment %} {% for user in jadval %}
                 <tr>
                   <th>{{user.username}}</th>
-                  {% for fan in fanlar %}
-                    <th>{{fan.name}}</th>
+                  {% for baho in baholar %}
+                    <th>{{baho.baho }}</th>
                   {% endfor %}
                 </tr>
               {% endfor %}
+              {% endcomment %}
+              {% for b in baholar %}
+                  <tr>
+                    <td>{{b.baho}}</td>
+                    <td>{{b.fan.name}}</td>
+                    <td>{{b.user.username}}</td>
+                  </tr>
+              {% endfor %}
+
             </tbody>
           </table>
         </div>

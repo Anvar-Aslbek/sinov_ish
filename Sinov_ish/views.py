@@ -36,9 +36,11 @@ def jadval(request):
     user = request.user
     fanlar = Fan.objects.filter(fakultet=user.fakultet)
     users = Talaba.objects.filter(fakultet=user.fakultet)
+    baholar = Baho.objects.all()
     content = {
         'fanlar':fanlar,
-        'jadval':users
+        'jadval':users,
+        'baholar':baholar,
     }
     return render(request,"jadval.html", content)
 
