@@ -16,8 +16,9 @@
         <h1>{{request.user.fakultet}} FAKULteti</h1>
 
         <div class="yon">
-          <form class="example">
-            <input type="text" placeholder="Search.." name="search">
+          <form class="example" action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Search.." name="query">
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
 
@@ -37,7 +38,7 @@
           <table cellpadding="0" cellspacing="0" border="0">
             <thead>
               <tr>
-                <th>Foydalanuvchi</th>
+                <th>Foydalanuvchi \ Fanlar</th>
                 {% for fan in fanlar %}
                   <th>{{fan.name}}</th>
                 {% endfor %}
@@ -48,7 +49,7 @@
         <div class="tbl-content">
           <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
-              {% for user in users %}
+              {% for user in jadval %}
                 <tr>
                   <th>{{user.username}}</th>
                   {% for fan in fanlar %}

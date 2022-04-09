@@ -38,24 +38,26 @@ def jadval(request):
     users = Talaba.objects.filter(fakultet=user.fakultet)
     content = {
         'fanlar':fanlar,
-        'users':users
+        'jadval':users
     }
     return render(request,"jadval.html", content)
 def search(request):
     results = None
+    user = request.user  
+    fanlar = Fan.objects.filter(fakultet=user.fakultet)
     try:
         query = request.POST['query']
-        results = Talaba.objects.filter(name__icontains=query)
+        results = Talaba.objects.filter(username__icontains=query)
 
         return render(
             request,
             'jadval.html',
-            {'jadval': results}
+            {'jadval': results,'fanlar':fanlar}
         )
     except KeyError:
         "KeyError"
         return render(
             request,
             'jadval.html',
-            {'jadval': results}
+            {'jadval': results,'fanlar':fanlar}
         )
