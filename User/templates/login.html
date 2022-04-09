@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="center">
-        <h1>Our Newsletter</h1>
+        <h1>Kirish</h1>
         <form action="" method="post">
             {% csrf_token %}
             <div class="inputbox">
@@ -22,9 +22,12 @@
                 <label for="password"></label>
                 {% render_field form.password type="password" name="password" required="required" %}
             </div>
-            <div>
-                <a href="{% url 'signup' %}" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;">Ruyxatdan o'tish</a>
-                <button type="submit" style="padding: 12px;text-decoration: none;border: 1px solid;border-radius: 12px;margin-left: 20px;">Kirish</button>
+            <div class="inputbox">
+                <input type="submit" value="submit">
+                <!-- <button type="submit" style="padding: 12px;text-decoration: none;border: 1px solid;border-radius: 12px;margin-left: 20px;">Kirish</button> -->
+            </div>
+            <div class="inputbox">
+                <a href="{% url 'signup' %}" style="display: block; width: 100%;padding: 10px;text-decoration: none; border: 1px solid;border-radius: 10px;">Ruyxatdan o'tish</a>
             </div>
         </form>
       </div>

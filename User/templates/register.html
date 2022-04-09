@@ -17,37 +17,34 @@
 </head>
 <body>
     <div class="center">
-        <h1>Our Newsletter</h1>
+        <h1>Ro'yxatdan o'tish</h1>
         <form action="" method="post">
             {% csrf_token %}
-            <div class="inputbox1">
-                <label for="username">Username</label>
-                {% render_field form.username type="text" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:170px;" name="username" required="required" %}
+            <div class="inputbox">
+                {% render_field form.username type="text" placeholder="Username" required="required" %}
             </div>
-            <div class="inputbox1">
-                <label for="email">email</label>
-                {% render_field form.email type="text" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:170px;" name="email" required="required" %}
+            <div class="inputbox">
+                {% render_field form.email type="text" placeholder="Email" %}
             </div>
-            <div class="inputbox1">
-                <label for="fakultet">Fakultet : </label>
-                {% render_field form.fakultet type="text" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:193px;" name="fakultet" required="required" %}
+            <div class="inputbox">
+                {% render_field form.fakultet %}
             </div>
-            <div class="inputbox1">
-                <label for="Kurs">Kurs : </label>
-                {% render_field form.kurs type="text" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:193px;" name="Kurs" required="required" %}
+            <div class="inputbox">
+                {% render_field form.kurs %}
             </div>
-            <div class="inputbox1">
-                <label for="password">Parol</label>
-                {% render_field form.password1 type="password" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:170px;" name="password" required="required" %}
+            <div class="inputbox">
+                {% render_field form.password1 type="password" placeholder="Parol" %}
             </div>
-            <div class="inputbox1">
-              <label for="password1">Parol(Takroran)</label>
-              {% render_field form.password2 type="password" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;float:right;width:170px;" name="password1" required="required" %}
+            <div class="inputbox">
+              {% render_field form.password2 type="password" placeholder="Parol(Takroran)" %}
             </div>
-            <div align='CENTER'>
-                <a href="{% url 'login' %}" style="padding: 10px;text-decoration: none;border: 1px solid;border-radius: 10px;">Ortga qaytish</a>
-                <input type="submit" style="padding: 12px;text-decoration: none;border: 1px solid;border-radius: 12px;margin-left: 20px;" value="Kirish">
+            <div class="inputbox">
+                <input type="submit" value="submit">
             </div>
+            <div class="inputbox">
+                <a href="{% url 'login' %}" style="display: block; width: 100%;padding: 10px;text-decoration: none; border: 1px solid;border-radius: 10px;">Ortga qaytish</a>
+            </div>
+            
         </form>
       </div>
 </body>

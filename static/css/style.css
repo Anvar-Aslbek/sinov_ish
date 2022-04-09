@@ -37,7 +37,7 @@ body {
   height: 50px;
   margin-bottom: 50px;
 }
-.center .inputbox input {
+.center .inputbox input, .center .inputbox select {
   position: absolute;
   top: 0;
   left: 0;

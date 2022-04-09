@@ -27,7 +27,7 @@ def home(request):
                 f.baho = values
                 f.save()
             print("Ciqdi",keys, values, type(keys), type(values))
-        return redirect('register')
+        return redirect('jadval')
     else:
         form = BahoForm()
     return render(request,'index.html', {'form':form, 'fanlar':fanlar})
