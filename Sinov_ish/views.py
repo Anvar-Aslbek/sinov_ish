@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 
 from .forms import BahoForm
-from .models import Talaba, Fan, Baho
+from .models import Talaba, Fan, Baho, Fakultet
 
 def home(request):
     user1 = Talaba.objects.get(username=request.user)
@@ -33,4 +33,11 @@ def home(request):
     return render(request,'index.html', {'form':form, 'fanlar':fanlar})
 
 def jadval(request):
-    return render(request,"jadval.html")
+    user = request.user
+    fanlar = Fan.objects.filter(fakultet=user.fakultet)
+    users = Talaba.objects.filter(fakultet=user.fakultet)
+    content = {
+        'fanlar':fanlar,
+        'users':users
+    }
+    return render(request,"jadval.html", content)
