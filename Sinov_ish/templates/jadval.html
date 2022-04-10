@@ -14,6 +14,8 @@
     <section>
         <!--for demo wrap-->
         <h1>{{request.user.fakultet}} FAKULteti</h1>
+        <h1>Assalomu Alaykum {{user.username}}</h1>
+        <h1><a href="{% url 'logout' %}">Accountdan chiqish</a></h1>
 
         <div class="yon">
           <form class="example" action="{% url 'search' %}" method="post">
