@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render
-
 from .forms import BahoForm
 from .models import Talaba, Fan, Baho, Fakultet
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def home(request):
     user1 = Talaba.objects.get(username=request.user)
     fanlar = Fan.objects.filter(fakultet=user1.fakultet)
@@ -32,6 +33,7 @@ def home(request):
         form = BahoForm()
     return render(request,'index.html', {'form':form, 'fanlar':fanlar})
 
+@login_required(login_url='login')
 def jadval(request):
     user = request.user
     fanlar = Fan.objects.filter(fakultet=user.fakultet)
@@ -44,7 +46,7 @@ def jadval(request):
     }
     return render(request,"jadval.html", content)
 
-
+@login_required(login_url='login')
 def search(request):
     results = None
     user = request.user  

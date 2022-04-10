@@ -65,13 +65,13 @@ body {
   transform: translateX(-13px) translateY(-35px);
   font-size: 1em;
 }
-.center .inputbox [type="submit"] {
+.center .inputbox [type="submit"], .center .inputbox a {
   width: 50%;
   background: dodgerblue;
   color: #fff;
   border: #fff;
 }
-.center .inputbox:hover [type="submit"] {
+.center .inputbox:hover [type="submit"], .center .inputbox:hover a {
   background: linear-gradient(45deg, greenyellow, dodgerblue);
 }
 
