@@ -1,3 +1,4 @@
+from pickle import FALSE
 from django.shortcuts import redirect, render
 from .forms import BahoForm
 from .models import Talaba, Fan, Baho, Fakultet
@@ -43,8 +44,47 @@ def jadval(request):
         'fanlar':fanlar,
         'jadval':users,
         'baholar':baholar,
+        'ls':False
     }
     return render(request,"jadval.html", content)
+
+@login_required(login_url='login')
+def search_baho(request):
+    results = None
+    user = request.user
+    fanlar = Fan.objects.filter(fakultet=user.fakultet)
+    query = request.POST['baho_search']
+    baholar3 = Baho.objects.filter(fan__in=fanlar,baho='3')
+    ls3 = [True]
+    for i in baholar3:
+        if not(i.user in ls3):
+            ls3.append(i.user)
+    baholar4 = Baho.objects.filter(fan__in=fanlar,baho='4')
+    ls4 = [True]
+    for i in baholar4:
+        if not(i.user in ls3) and not(i.user in ls4):
+            ls4.append(i.user)
+    if query == '3':
+        ls = ls3
+    elif query == '4':
+        ls = ls4
+    else:
+        baholar5 = Baho.objects.filter(fan__in=fanlar,baho='5')
+        ls=[True]
+        for i in baholar5:
+            if not(i.user in ls3) and not(i.user in ls4) and not(i.user in ls):
+                ls.append(i.user)
+        print(bool(ls))
+
+
+    baholar = Baho.objects.filter(fan__in=fanlar)
+    results = Talaba.objects.filter(fakultet=user.fakultet)
+
+    return render(
+        request,
+        'jadval.html',
+        {'jadval': results,'fanlar':fanlar,'baholar':baholar, 'ls':ls}
+    )
 
 @login_required(login_url='login')
 def search(request):
@@ -66,6 +106,6 @@ def search(request):
         return render(
             request,
             'jadval.html',
-            {'jadval': results,'fanlar':fanlar}
+            {'jadval': results,'fanlar':fanlar, 'ls':False}
         )
         

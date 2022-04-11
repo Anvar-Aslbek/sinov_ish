@@ -23,6 +23,17 @@
             <input type="text" placeholder="Search.." name="query">
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
+          
+          <form class="example" action="{% url 'search_baho' %}" method="post">
+            baho bo'yicha saralash
+            {% csrf_token %}
+            <select name="baho_search" id="cars">
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
 
           
           
@@ -43,37 +54,30 @@
         <div class="tbl-content">
           <table cellpadding="0" cellspacing="0" border="0">
             <tbody>
-             {% comment %} 
-             {% for user in jadval %}
-                <tr>
-                  <th>{{user.username}}</th>
-                  {% for baho in baholar %}
-                    <th>{{baho.baho }}</th>
-                  {% endfor %}
-                </tr>
-              {% endfor %}
-              {% endcomment %}
 
               {% for user1 in jadval %}
-                <tr>
-                  <th>{{user1.username}}</th>
-                  {% for baho in baholar %}
-                    {% if baho.user == user1 %}
-                      <th>{{baho.baho}}</th>
-                    {% endif %}
-                  {% endfor %}
-                </tr>
-              {% endfor %}
-
-              {% comment %} 
-              {% for b in baholar %}
+                {%if ls %}
+                  {% if user1 in ls %}
+                    <tr>
+                      <th>{{user1.username}}</th>
+                      {% for baho in baholar %}
+                        {% if baho.user == user1 %}
+                          <th>{{baho.baho}}</th>
+                        {% endif %}
+                      {% endfor %}
+                    </tr>
+                  {% endif %}
+                {% else %}
                   <tr>
-                    <td>{{b.baho}}</td>
-                    <td>{{b.fan.name}}</td>
-                    <td>{{b.user.username}}</td>
+                    <th>{{user1.username}}</th>
+                    {% for baho in baholar %}
+                      {% if baho.user == user1 %}
+                        <th>{{baho.baho}}</th>
+                      {% endif %}
+                    {% endfor %}
                   </tr>
+                {% endif %}
               {% endfor %}
-              {% endcomment %}
 
             </tbody>
           </table>
