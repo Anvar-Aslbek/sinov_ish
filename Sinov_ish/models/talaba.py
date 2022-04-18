@@ -13,6 +13,7 @@ class Talaba(AbstractUser):
     bio = models.CharField(max_length=100,blank=True, null = True)
     STATUS = Choices('1', '2', '3', '4')
     kurs = StatusField()
+    stipendiya = models.CharField(max_length=100, default="oladi", blank=True, null = True)
 
     def __str__(self):
         return self.username

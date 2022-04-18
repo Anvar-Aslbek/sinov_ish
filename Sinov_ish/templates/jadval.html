@@ -47,6 +47,7 @@
                 {% for fan in fanlar %}
                   <th>{{fan.name}}</th>
                 {% endfor %}
+                <th>Stipendiya</th>
               </tr>
             </thead>
           </table>
@@ -75,6 +76,14 @@
                         <th>{{baho.baho}}</th>
                       {% endif %}
                     {% endfor %}
+
+                    {% if user1.stipendiya == "yiqilgan" %}
+                      <th style="background-color: rgb(255, 0, 0); opacity: 0.9;">Yiqilgan</th>
+                    {% elif user1.stipendiya == "olmaydi" %}
+                      <th style="background-color: rgb(0, 132, 255); opacity: 0.9;">stipendiya olmaydi</th>
+                    {% else %}
+                      <th style="background-color: rgb(8, 156, 15); opacity: 0.8;">stipendiya oladi</th>
+                    {% endif %}
                   </tr>
                 {% endif %}
               {% endfor %}
