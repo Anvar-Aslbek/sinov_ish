@@ -78,7 +78,9 @@
                     {% endfor %}
 
                     {% if user1.stipendiya == "yiqilgan" %}
-                      <th style="background-color: rgb(255, 0, 0); opacity: 0.9;">Yiqilgan</th>
+                      <th style="background-color: rgb(233, 78, 78); opacity: 0.8;">Yiqilgan</th>
+                    {% elif user1.stipendiya == "kiritilmagan" %}
+                      <th>baholar kiritilmagan</th>
                     {% elif user1.stipendiya == "olmaydi" %}
                       <th style="background-color: rgb(0, 132, 255); opacity: 0.9;">stipendiya olmaydi</th>
                     {% else %}

@@ -60,7 +60,12 @@ def jadval(request):
         user1 = o
         baho2 = Baho.objects.filter(user = user1,baho='2')
         baho3 = Baho.objects.filter(user = user1,baho='3')
-        if len(baho2)>=4:
+        fan = Fan.objects.filter(fakultet = user1.fakultet)
+        us = Baho.objects.filter(user = user1)
+        if len(us) != len(fan):
+            user1.stipendiya = "kiritilmagan"
+            user1.save()
+        elif len(baho2)>=4:
             user1.stipendiya = "yiqilgan"
             user1.save()
         elif len(baho3)>=2:
