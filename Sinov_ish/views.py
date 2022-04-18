@@ -74,12 +74,19 @@ def jadval(request):
     #     else:
     #         user1.stipendiya = "oladi"
     #         user1.save()
+    
     content = {
         'fanlar':fanlar,
         'jadval':users,
         'baholar':baholar,
         'ls':False
     }
+    fan = Fan.objects.filter(fakultet = user.fakultet)
+    us = Baho.objects.filter(user = user)
+    if len(us) != len(fan):
+        user.stipendiya = "kiritilmagan"
+        user.save()
+        return redirect('home')
     return render(request,"jadval.html", content)
 
 @login_required(login_url='login')
