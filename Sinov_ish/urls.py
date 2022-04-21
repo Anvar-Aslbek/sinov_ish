@@ -1,9 +1,10 @@
 from django.urls import URLPattern, path
-from .views import home, jadval, search, search_baho
+from .views import home, jadval, search, search_baho,  table
 
 urlpatterns = [
     path('home/',home, name = 'home'),
     path('jadval/',jadval, name = 'jadval'),
     path('search/',search,name = 'search'),
-    path('search_baho/',search_baho,name = 'search_baho')
+    path('search_baho/',search_baho,name = 'search_baho'),
+    path('table/',table ,name ='table')
 ]

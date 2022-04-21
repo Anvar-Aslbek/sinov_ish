@@ -153,4 +153,46 @@ def search(request):
             'jadval.html',
             {'jadval': results,'fanlar':fanlar, 'ls':False}
         )
-        
+
+
+
+@login_required(login_url='login')
+def table(request):
+    user = request.user
+    fanlar = Fan.objects.filter(fakultet=user.fakultet)
+    users = Talaba.objects.filter(fakultet=user.fakultet)
+    baholar = Baho.objects.filter(fan__in=fanlar)
+    #ishlamay qolganda komentariyani olib tashlang
+    USER = Talaba.objects.all()
+    for o in USER:
+        user1 = o
+        baho2 = Baho.objects.filter(user = user1,baho='2')
+        baho3 = Baho.objects.filter(user = user1,baho='3')
+        fan = Fan.objects.filter(fakultet = user1.fakultet)
+        us = Baho.objects.filter(user = user1)
+        if len(us) != len(fan):
+            user1.stipendiya = "kiritilmagan"
+            user1.save()
+        elif len(baho2)>=4:
+            user1.stipendiya = "yiqilgan"
+            user1.save()
+        elif len(baho3)>=2:
+            user1.stipendiya = "olmaydi"
+            user1.save()
+        else:
+            user1.stipendiya = "oladi"
+            user1.save()
+    
+    content = {
+        'fanlar':fanlar,
+        'jadval':users,
+        'baholar':baholar,
+        'ls':False
+    }
+    fan = Fan.objects.filter(fakultet = user.fakultet)
+    us = Baho.objects.filter(user = user)
+    if len(us) != len(fan):
+        user.stipendiya = "kiritilmagan"
+        user.save()
+        return redirect('home')
+    return render(request,"table.html", content)
