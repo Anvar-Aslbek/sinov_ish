@@ -29,6 +29,20 @@ def home(request):
                 f.baho = values
                 f.save()
             print("Ciqdi",keys, values, type(keys), type(values))
+
+        #####STIPENDIYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        baho2 = Baho.objects.filter(user = user1,baho='2')
+        baho3 = Baho.objects.filter(user = user1,baho='3')
+        if len(baho2)>=4:
+            user1.stipendiya = "yiqilgan"
+            user1.save()
+        elif len(baho3)>=2:
+            user1.stipendiya = "olmaydi"
+            user1.save()
+        else:
+            user1.stipendiya = "oladi"
+            user1.save()
+
         return redirect('jadval')
     else:
         form = BahoForm()
@@ -40,12 +54,39 @@ def jadval(request):
     fanlar = Fan.objects.filter(fakultet=user.fakultet)
     users = Talaba.objects.filter(fakultet=user.fakultet)
     baholar = Baho.objects.filter(fan__in=fanlar)
+    #ishlamay qolganda komentariyani olib tashlang
+    # USER = Talaba.objects.all()
+    # for o in USER:
+    #     user1 = o
+    #     baho2 = Baho.objects.filter(user = user1,baho='2')
+    #     baho3 = Baho.objects.filter(user = user1,baho='3')
+    #     fan = Fan.objects.filter(fakultet = user1.fakultet)
+    #     us = Baho.objects.filter(user = user1)
+    #     if len(us) != len(fan):
+    #         user1.stipendiya = "kiritilmagan"
+    #         user1.save()
+    #     elif len(baho2)>=4:
+    #         user1.stipendiya = "yiqilgan"
+    #         user1.save()
+    #     elif len(baho3)>=2:
+    #         user1.stipendiya = "olmaydi"
+    #         user1.save()
+    #     else:
+    #         user1.stipendiya = "oladi"
+    #         user1.save()
+    
     content = {
         'fanlar':fanlar,
         'jadval':users,
         'baholar':baholar,
         'ls':False
     }
+    fan = Fan.objects.filter(fakultet = user.fakultet)
+    us = Baho.objects.filter(user = user)
+    if len(us) != len(fan):
+        user.stipendiya = "kiritilmagan"
+        user.save()
+        return redirect('home')
     return render(request,"jadval.html", content)
 
 @login_required(login_url='login')
@@ -55,8 +96,12 @@ def search_baho(request):
     fanlar = Fan.objects.filter(fakultet=user.fakultet)
     query = request.POST['baho_search']
     baholar3 = Baho.objects.filter(fan__in=fanlar,baho='3')
+    baholar2 = Baho.objects.filter(fan__in=fanlar,baho='2')
     ls3 = [True]
     for i in baholar3:
+        if not(i.user in ls3):
+            ls3.append(i.user)
+    for i in baholar2:
         if not(i.user in ls3):
             ls3.append(i.user)
     baholar4 = Baho.objects.filter(fan__in=fanlar,baho='4')
