@@ -43,7 +43,7 @@ def home(request):
             user1.stipendiya = "oladi"
             user1.save()
 
-        return redirect('jadval')
+        return redirect('table')
     else:
         form = BahoForm()
     return render(request,'index.html', {'form':form, 'fanlar':fanlar})
@@ -127,7 +127,7 @@ def search_baho(request):
 
     return render(
         request,
-        'jadval.html',
+        'table.html',
         {'jadval': results,'fanlar':fanlar,'baholar':baholar, 'ls':ls}
     )
 
@@ -143,14 +143,14 @@ def search(request):
 
         return render(
             request,
-            'jadval.html',
+            'table.html',
             {'jadval': results,'fanlar':fanlar,'baholar':baholar}
         )
     except KeyError:
         "KeyError"
         return render(
             request,
-            'jadval.html',
+            'table.html',
             {'jadval': results,'fanlar':fanlar, 'ls':False}
         )
 
