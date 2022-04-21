@@ -15,8 +15,7 @@
         <form action="" method="post">
             {% csrf_token %}
             <div class="inputbox">
-                <label for="username">Username</label>
-                {% render_field form.username type="text" name="username" required="required" %}
+                {% render_field form.username type="text" placeholder="Username" name="username" required="required" %}
             </div>
             <div class="inputbox">
                 <label for="password"></label>
